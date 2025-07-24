@@ -11,6 +11,4 @@ class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
 
     def get_permissions(self): # Sistema de Autenticação (Desativar em testes básicos)
-        if self.action in ['list', 'retrieve']:
-            return [permissions.AllowAny()]
         return [permissions.IsAuthenticated()]

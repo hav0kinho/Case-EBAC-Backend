@@ -18,17 +18,28 @@ from django.contrib import admin
 from django.urls import path, include
 
 from rest_framework import routers
-from products.views import ProductViewSet
+# VIEWS
+from products.views import ProductViewSet, PublicCatalogView
 from categories.views import CategoryViewSet
+from users.views import UserRegisterView
+# Autenticação
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 router = routers.DefaultRouter()
+
+# Rotas que vão ser protegidas por mim
 router.register(r'products', ProductViewSet, basename='product') # Rota do Viewset de Product
 router.register(r'categories', CategoryViewSet, basename='category') # Rota do ViewSet das Categorias
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # Rotas Protegidas (aparecem no API ROOT do DRF)
     path('api/', include(router.urls)),
+
+    # Rotas Públicas
+    path('api/catalog/', PublicCatalogView.as_view(), name='catalog'), # Apenas GET até então xd
+    path('api/register/', UserRegisterView.as_view(), name='register'),
     path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

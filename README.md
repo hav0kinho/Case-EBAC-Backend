@@ -106,7 +106,7 @@ O token `access` deve ser enviado no header `Authorization` como: `Authorization
 ## 🔗 Front-end
 Este back-end se conecta ao front-end React disponível neste repositório:
 
-👉 [Repositório do Back-end](https://github.com/hav0kinho/Case-EBAC-Frontend)
+👉 [Repositório do Front-end](https://github.com/hav0kinho/Case-EBAC-Frontend)
 
 ---
 
